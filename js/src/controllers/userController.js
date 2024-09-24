@@ -9,7 +9,103 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import exp from 'express';
 const router = exp.Router();
-router.post('/login', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post('/register', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        res.json({
+            err: false,
+            message: 'Login Successful',
+            data: undefined
+        });
+    }
+    catch (arr) {
+        res.status(404).json({
+            err: true,
+            message: 'Invalid',
+            data: null
+        });
+    }
+}));
+router.post('/follow', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        res.json({
+            err: false,
+            message: 'Login Successful',
+            data: undefined
+        });
+    }
+    catch (arr) {
+        res.status(404).json({
+            err: true,
+            message: 'Invalid',
+            data: null
+        });
+    }
+}));
+router.get('/search', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        res.json({
+            err: false,
+            message: 'Login Successful',
+            data: undefined
+        });
+    }
+    catch (arr) {
+        res.status(404).json({
+            err: true,
+            message: 'Invalid',
+            data: null
+        });
+    }
+}));
+router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        res.json({
+            err: false,
+            message: 'Login Successful',
+            data: undefined
+        });
+    }
+    catch (arr) {
+        res.status(404).json({
+            err: true,
+            message: 'Invalid',
+            data: null
+        });
+    }
+}));
+router.get('/profile', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        res.json({
+            err: false,
+            message: 'Login Successful',
+            data: undefined
+        });
+    }
+    catch (arr) {
+        res.status(404).json({
+            err: true,
+            message: 'Invalid',
+            data: null
+        });
+    }
+}));
+router.get('/followers', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        res.json({
+            err: false,
+            message: 'Login Successful',
+            data: undefined
+        });
+    }
+    catch (arr) {
+        res.status(404).json({
+            err: true,
+            message: 'Invalid',
+            data: null
+        });
+    }
+}));
+router.get('/following', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         res.json({
             err: false,
