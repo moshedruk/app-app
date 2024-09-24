@@ -1,4 +1,10 @@
 import exp from 'express';
 import 'dotenv/config';
+import postController from './src/controllers/postController.js';
+import userController from './src/controllers/userController.js';
+import aothController from './src/controllers/authController.js';
 const app = exp();
-app.listen(process.env.PORT);
+app.use('post', postController);
+app.use('user', userController);
+app.use('auth', aothController);
+app.listen(process.env.PORT, () => console.log(`server is listen... ${process.env.PORT}`));
