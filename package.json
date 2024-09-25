@@ -6,8 +6,7 @@
     "start": "nodemon js/index.js"
   },
   "keywords": [],
-  "author": "",
-  "type": "module",
+  "author": "",  
   "license": "ISC",
   "description": "",
   "dependencies": {

@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -7,14 +8,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import exp from 'express';
-const router = exp.Router();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const postService_1 = __importDefault(require("../services/postService"));
+const router = express_1.default.Router();
 router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const result = yield postService_1.default.getAllPost();
         res.json({
             err: false,
             message: 'Login Successful',
-            data: undefined
+            data: result
         });
     }
     catch (arr) {
@@ -27,16 +34,22 @@ router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 }));
 router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        res.json({
-            err: false,
-            message: 'Login Successful',
-            data: undefined
-        });
+        const result = yield postService_1.default.createNewPost(req.body);
+        if (result) {
+            res.status(201).json({
+                err: false,
+                message: 'Login Successful',
+                data: undefined
+            });
+        }
+        else {
+            throw new Error("cant save user");
+        }
     }
-    catch (arr) {
+    catch (err) {
         res.status(404).json({
             err: true,
-            message: 'Invalid',
+            message: err || 'Invalid',
             data: null
         });
     }
@@ -89,4 +102,4 @@ router.patch('/like/:id', (req, res) => __awaiter(void 0, void 0, void 0, functi
         });
     }
 }));
-export default router;
+exports.default = router;
