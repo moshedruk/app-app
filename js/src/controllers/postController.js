@@ -56,10 +56,11 @@ router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 }));
 router.get('/search', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const result = yield postService_1.default.getPostBySearch(req.query.word);
         res.json({
             err: false,
             message: 'Login Successful',
-            data: undefined
+            data: result
         });
     }
     catch (arr) {
@@ -72,10 +73,11 @@ router.get('/search', (req, res) => __awaiter(void 0, void 0, void 0, function* 
 }));
 router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const result = yield postService_1.default.getPostBySearchById(req.params.id);
         res.json({
             err: false,
             message: 'Login Successful',
-            data: undefined
+            data: result
         });
     }
     catch (arr) {
@@ -86,12 +88,13 @@ router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         });
     }
 }));
-router.patch('/like/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.patch('/like/:idpost/:iduser', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const result = yield postService_1.default.PostLike(req.params.idpost, req.params.iduser);
         res.json({
             err: false,
             message: 'Login Successful',
-            data: undefined
+            data: result
         });
     }
     catch (arr) {

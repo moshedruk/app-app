@@ -7,7 +7,7 @@ import NewPostDTO from "../DTO/newPost";
 export default class PostService{
     public static async createNewPost(newpost: NewPostDTO): Promise<boolean> {
         //create new user 
-        const post: Post = new Post(newpost.authorId, newpost.content, newpost.hashtags);
+        const post: Post = new Post(newpost.authorId, newpost.content, newpost.hashtags, newpost.ref);
         let posters: Post[] = await getFileData<Post>("posters") as Post[];
         if(!posters) posters = [];
         // push
@@ -22,5 +22,30 @@ export default class PostService{
         if(!posters) posters = [];      
         
         return posters
+    }
+    public static async getPostBySearch(wors:string): Promise<Post[]> {    
+        console.log(wors) 
+        
+        let posters: Post[] = await getFileData<Post>("posters") as Post[];
+        const filteredPosts = posters.filter(post => post.content.includes(wors));         
+        return filteredPosts
+    }
+    public static async getPostBySearchById(id:string): Promise<Post|undefined >  {         
+        
+        let posters: Post[] = await getFileData<Post>("posters") as Post[];
+        const filteredPosts = posters.find(post => post.id == id);         
+        return filteredPosts
+    }
+    public static async PostLike(idpost:string,iduser:string): Promise<boolean>  {         
+        
+        let posters: Post[] = await getFileData<Post>("posters") as Post[];
+        const index  = posters.findIndex(post => post.id == idpost);  
+        if(index > -1) {
+            if(!posters[index].likesBy.includes(iduser)) {
+                posters[index].likesBy.push(iduser);       
+                return await saveFileData<Post>("posters", posters);
+            }        
+        }
+    return false
     }
 }

@@ -37,12 +37,13 @@ router.post('/register', (req, res) => __awaiter(void 0, void 0, void 0, functio
         });
     }
 }));
-router.post('/follow', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.patch('/follow/:idme/:iduser', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const result = yield userService_1.default.PostFollwo(req.params.idme, req.params.iduser);
         res.json({
             err: false,
             message: 'Login Successful',
-            data: undefined
+            data: result
         });
     }
     catch (err) {
@@ -55,10 +56,11 @@ router.post('/follow', (req, res) => __awaiter(void 0, void 0, void 0, function*
 }));
 router.get('/search', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const result = yield userService_1.default.getUserBySearch(req.query.word);
         res.json({
             err: false,
             message: 'Login Successful',
-            data: undefined
+            data: result
         });
     }
     catch (err) {
@@ -69,28 +71,13 @@ router.get('/search', (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
     }
 }));
-router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/profile/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const result = userService_1.default.getUserById(req.params.id);
         res.json({
             err: false,
             message: 'Login Successful',
-            data: undefined
-        });
-    }
-    catch (err) {
-        res.status(404).json({
-            err: true,
-            message: 'Invalid',
-            data: null
-        });
-    }
-}));
-router.get('/profile', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        res.json({
-            err: false,
-            message: 'Login Successful',
-            data: undefined
+            data: result
         });
     }
     catch (err) {
@@ -118,6 +105,22 @@ router.get('/followers', (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 }));
 router.get('/following', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        res.json({
+            err: false,
+            message: 'Login Successful',
+            data: undefined
+        });
+    }
+    catch (err) {
+        res.status(404).json({
+            err: true,
+            message: 'Invalid',
+            data: null
+        });
+    }
+}));
+router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         res.json({
             err: false,

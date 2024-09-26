@@ -45,10 +45,11 @@ router.post('/', async (req:Request,res:Response):Promise<void> =>{
 })
 router.get('/search', async (req:Request,res:Response):Promise<void> =>{
     try{
+        const result =  await PostService.getPostBySearch(req.query.word as string)
         res.json({
             err: false,
             message: 'Login Successful',  
-            data:undefined 
+            data:result 
         })
     }
     catch(arr){
@@ -61,10 +62,11 @@ router.get('/search', async (req:Request,res:Response):Promise<void> =>{
 })
 router.get('/:id', async (req:Request,res:Response):Promise<void> =>{
     try{
+        const result =  await PostService.getPostBySearchById(req.params.id)
         res.json({
             err: false,
             message: 'Login Successful',  
-            data:undefined 
+            data:result 
         })
     }
     catch(arr){
@@ -75,12 +77,13 @@ router.get('/:id', async (req:Request,res:Response):Promise<void> =>{
         })
     } 
 })
-router.patch('/like/:id', async (req:Request,res:Response):Promise<void> =>{
+router.patch('/like/:idpost/:iduser', async (req:Request,res:Response):Promise<void> =>{
     try{
+        const result = await PostService.PostLike(req.params.idpost,req.params.iduser)
         res.json({
             err: false,
             message: 'Login Successful',  
-            data:undefined 
+            data:result 
         })
     }
     catch(arr){
